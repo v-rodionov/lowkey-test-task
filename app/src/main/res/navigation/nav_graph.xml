@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.rvv.android.test.taks.lowkey.FirstFragment"
+        android:name="com.rvv.android.test.taks.lowkey.ui.list.ListOfPhotosFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        tools:layout="@layout/fragment_list_of_photos">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
