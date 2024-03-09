@@ -8,6 +8,8 @@ import com.rvv.android.test.taks.lowkey.ui.base.BaseViewModel
 import com.rvv.android.test.taks.lowkey.ui.base.pagination.Page
 import com.rvv.android.test.taks.lowkey.ui.base.pagination.PageNumberPagingSource
 import com.rvv.android.test.taks.lowkey.ui.base.pagination.createPager
+import com.rvv.android.test.taks.lowkey.ui.details.PhotoDetails
+import com.rvv.android.test.taks.lowkey.ui.details.PhotoDetailsArgs
 
 class ListOfPhotosViewModel(
     private val contentRepository: ContentRepository,
@@ -27,7 +29,8 @@ class ListOfPhotosViewModel(
     }.flow.cachedIn(viewModelScope)
 
     fun onItemClick(item: ListOfPhotosItem) {
-        // TODO v_roiodnov:
+        val args = PhotoDetailsArgs(PhotoDetails(item.id, item.imageUrl, item.author))
+        forward(ListOfPhotosFragmentDirections.actionListOfPhotosToPhotoDetails(args))
     }
 
     // TODO v_roiodnov:

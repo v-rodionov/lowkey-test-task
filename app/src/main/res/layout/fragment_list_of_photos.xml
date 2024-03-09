@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.rvv.android.test.taks.lowkey.ui.common.StateViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/stateViewFlipperListOfPhotos"
+    android:id="@+id/swipeRefreshLayoutListOfPhotos"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewListOfPhotos"
+    <com.rvv.android.test.taks.lowkey.ui.common.StateViewFlipper
+        android:id="@+id/stateViewFlipperListOfPhotos"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:itemCount="12"
-        tools:listitem="@layout/item_list_of_photos" />
+        android:layout_height="match_parent">
 
-</com.rvv.android.test.taks.lowkey.ui.common.StateViewFlipper>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewListOfPhotos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:padding="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="12"
+            tools:listitem="@layout/item_list_of_photos" />
+
+    </com.rvv.android.test.taks.lowkey.ui.common.StateViewFlipper>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 

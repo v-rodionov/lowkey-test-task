@@ -35,14 +35,7 @@ class PageNumberPagingSource<T : Any>(
 
     // TODO v_rodionov: thing about
     override fun getRefreshKey(state: PagingState<Int, T>): Int? {
-        val anchorPosition = state.anchorPosition ?: return null
-        val page = state.closestPageToPosition(anchorPosition) ?: return null
-        val nextPageNumber = page.nextKey
-        val prevPageNumber = page.prevKey
-        return if (nextPageNumber != null && prevPageNumber != null)
-            nextPageNumber - prevPageNumber
-        else
-            null
+        return null
     }
 }
 

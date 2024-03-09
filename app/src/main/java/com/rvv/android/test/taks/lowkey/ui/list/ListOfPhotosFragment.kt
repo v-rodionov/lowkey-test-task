@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.paging.LoadState
-import com.rvv.android.test.taks.lowkey.core.DI
+import com.rvv.android.test.taks.lowkey.core.Dependencies
 import com.rvv.android.test.taks.lowkey.databinding.FragmentListOfPhotosBinding
 import com.rvv.android.test.taks.lowkey.ui.base.observeCommonEvents
 import com.rvv.android.test.taks.lowkey.ui.base.pagination.PagingLoadStateAdapter
+import com.rvv.android.test.taks.lowkey.utils.addLinearSpaceItemDecoration
 import com.rvv.android.test.taks.lowkey.utils.launchAndCollectIn
 
 /**
@@ -20,7 +21,7 @@ class ListOfPhotosFragment : Fragment() {
 
     private var _binding: FragmentListOfPhotosBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: ListOfPhotosViewModel by viewModels { DI.UiScope.listOfPhotosViewModelFactory }
+    private val viewModel: ListOfPhotosViewModel by viewModels { Dependencies.UiScope.getListOfPhotosViewModelFactory() }
     private val pageAdapter = ListOfPhotosAdapter(
         onClick = { item -> viewModel.onItemClick(item) }
     )
@@ -39,16 +40,30 @@ class ListOfPhotosFragment : Fragment() {
 
         with(recyclerViewListOfPhotos) {
             setHasFixedSize(true)
+            addLinearSpaceItemDecoration(dp = 8)
             adapter = pageAdapter.withLoadStateFooter(PagingLoadStateAdapter { pageAdapter.retry() })
         }
 
+        swipeRefreshLayoutListOfPhotos.setOnRefreshListener { pageAdapter.refresh() }
         stateViewFlipperListOfPhotos.setOnRetryButtonClick { pageAdapter.retry() }
 
         pageAdapter.addLoadStateListener { state ->
             when (state.refresh) {
-                is LoadState.Loading -> stateViewFlipperListOfPhotos.setStateLoading()
-                is LoadState.NotLoading -> stateViewFlipperListOfPhotos.setStateData()
-                is LoadState.Error -> stateViewFlipperListOfPhotos.setStateError()
+                is LoadState.Loading -> {
+                    if (!swipeRefreshLayoutListOfPhotos.isRefreshing) {
+                        swipeRefreshLayoutListOfPhotos.isEnabled = false
+                        stateViewFlipperListOfPhotos.setStateLoading()
+                    }
+                }
+                is LoadState.NotLoading -> {
+                    swipeRefreshLayoutListOfPhotos.isRefreshing = false
+                    swipeRefreshLayoutListOfPhotos.isEnabled = true
+                    stateViewFlipperListOfPhotos.setStateData()
+                }
+                is LoadState.Error -> {
+                    swipeRefreshLayoutListOfPhotos.isEnabled = false
+                    stateViewFlipperListOfPhotos.setStateError()
+                }
             }
         }
 

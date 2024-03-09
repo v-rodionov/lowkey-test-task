@@ -3,27 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/ListOfPhotosFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
+        android:id="@+id/ListOfPhotosFragment"
         android:name="com.rvv.android.test.taks.lowkey.ui.list.ListOfPhotosFragment"
-        android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_list_of_photos">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/actionListOfPhotosToPhotoDetails"
+            app:destination="@id/PhotoDetailsFragment" />
+
     </fragment>
 
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.rvv.android.test.taks.lowkey.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/PhotoDetailsFragment"
+        android:name="com.rvv.android.test.taks.lowkey.ui.details.PhotoDetailsFragment"
+        tools:layout="@layout/fragment_photo_details">
 
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+        <argument
+            android:name="args"
+            app:argType="com.rvv.android.test.taks.lowkey.ui.details.PhotoDetailsArgs"
+            app:nullable="false" />
+
     </fragment>
+
 </navigation>

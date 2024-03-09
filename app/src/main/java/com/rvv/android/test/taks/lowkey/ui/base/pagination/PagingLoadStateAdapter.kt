@@ -15,7 +15,7 @@ class PagingLoadStateAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState): PagingLoadStateViewHolder {
-        val binding = ItemPagingStateBinding.inflate(LayoutInflater.from(parent.context))
+        val binding = ItemPagingStateBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PagingLoadStateViewHolder(binding, onRetry)
     }
 }

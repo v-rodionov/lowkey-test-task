@@ -1,7 +1,6 @@
 package com.rvv.android.test.taks.lowkey.ui.base.pagination
 
 import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
 import com.rvv.android.test.taks.lowkey.databinding.ItemPagingStateBinding
