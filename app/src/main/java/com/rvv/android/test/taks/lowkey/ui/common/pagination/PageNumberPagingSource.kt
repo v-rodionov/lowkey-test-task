@@ -33,7 +33,6 @@ class PageNumberPagingSource<T : Any>(
         }
     }
 
-    // TODO v_rodionov: thing about
     override fun getRefreshKey(state: PagingState<Int, T>): Int? {
         return null
     }

@@ -33,7 +33,7 @@ class ListOfPhotosViewModel(
         forward(ListOfPhotosFragmentDirections.actionListOfPhotosToPhotoDetails(args))
     }
 
-    // TODO v_roiodnov:
+    // TODO v_rodionov: there is should be logic based on display metrics to find the best size of photo
     private fun findBestPhotoUrl(src: Src): String {
         return src.medium
     }

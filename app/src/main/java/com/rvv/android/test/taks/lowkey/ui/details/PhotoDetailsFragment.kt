@@ -5,6 +5,7 @@ import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.Keep
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -19,6 +20,7 @@ import kotlinx.parcelize.Parcelize
 import java.io.File
 
 @Parcelize
+@Keep
 data class PhotoDetailsArgs(val photoDetails: PhotoDetails) : Parcelable
 
 class PhotoDetailsFragment : Fragment() {
