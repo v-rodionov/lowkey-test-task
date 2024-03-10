@@ -1,4 +1,4 @@
-package com.rvv.android.test.taks.lowkey.ui.base.pagination
+package com.rvv.android.test.taks.lowkey.ui.common.pagination
 
 import androidx.core.view.isInvisible
 import androidx.paging.LoadState

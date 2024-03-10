@@ -1,8 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.details.PhotoDetailsFragment">
 
-</androidx.core.widget.NestedScrollView>
+    <com.rvv.android.test.taks.lowkey.ui.common.StateViewFlipper
+        android:id="@+id/stateViewFlipperPhotoDetails"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.github.piasy.biv.view.BigImageView
+            android:id="@+id/imageViewPhotoDetails"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:failureImage="@drawable/placeholder_error"
+            app:optimizeDisplay="true" />
+
+    </com.rvv.android.test.taks.lowkey.ui.common.StateViewFlipper>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarPhotoDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black_40"
+        app:navigationIcon="@drawable/ic_arrow_back_24" />
+
+</FrameLayout>

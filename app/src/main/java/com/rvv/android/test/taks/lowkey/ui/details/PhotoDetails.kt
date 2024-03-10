@@ -7,5 +7,4 @@ import kotlinx.parcelize.Parcelize
 data class PhotoDetails(
     val id: String,
     val imageUrl: String,
-    val authorName: String,
 ) : Parcelable

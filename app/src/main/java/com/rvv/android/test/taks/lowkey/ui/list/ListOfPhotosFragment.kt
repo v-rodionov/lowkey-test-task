@@ -10,7 +10,7 @@ import androidx.paging.LoadState
 import com.rvv.android.test.taks.lowkey.core.Dependencies
 import com.rvv.android.test.taks.lowkey.databinding.FragmentListOfPhotosBinding
 import com.rvv.android.test.taks.lowkey.ui.base.observeCommonEvents
-import com.rvv.android.test.taks.lowkey.ui.base.pagination.PagingLoadStateAdapter
+import com.rvv.android.test.taks.lowkey.ui.common.pagination.PagingLoadStateAdapter
 import com.rvv.android.test.taks.lowkey.utils.addLinearSpaceItemDecoration
 import com.rvv.android.test.taks.lowkey.utils.launchAndCollectIn
 

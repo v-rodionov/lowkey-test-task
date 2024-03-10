@@ -5,10 +5,9 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.rvv.android.test.taks.lowkey.R
 import com.rvv.android.test.taks.lowkey.databinding.ItemListOfPhotosBinding
-import com.squareup.picasso.Picasso
-import jp.wasabeef.picasso.transformations.gpu.VignetteFilterTransformation
 
 class ListOfPhotosAdapter(
     private val onClick: (ListOfPhotosItem) -> Unit,
@@ -40,11 +39,10 @@ class ListOfPhotosItemViewHolder(
         root.setOnClickListener { onClick(bindingAdapterPosition) }
         textViewItemListOfPhotosAuthorName.text = item.author
 
-        Picasso.get()
-            .load(item.imageUrl)
-            .placeholder(R.drawable.ic_image_search_placeholder_24)
-            .error(R.drawable.ic_image_search_placeholder_24)
-            .transform(VignetteFilterTransformation(root.context))
+        Glide.with(root.context)
+            .load(item.optimizedImageUrl)
+            .placeholder(R.drawable.placeholder_loading)
+            .error(R.drawable.placeholder_error)
             .into(imageViewItemListOfPhotosPhoto)
     }
 }

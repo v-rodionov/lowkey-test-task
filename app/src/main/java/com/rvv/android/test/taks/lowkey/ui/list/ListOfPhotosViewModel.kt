@@ -5,9 +5,9 @@ import androidx.paging.cachedIn
 import com.rvv.android.test.taks.lowkey.data.ContentRepository
 import com.rvv.android.test.taks.lowkey.data.Src
 import com.rvv.android.test.taks.lowkey.ui.base.BaseViewModel
-import com.rvv.android.test.taks.lowkey.ui.base.pagination.Page
-import com.rvv.android.test.taks.lowkey.ui.base.pagination.PageNumberPagingSource
-import com.rvv.android.test.taks.lowkey.ui.base.pagination.createPager
+import com.rvv.android.test.taks.lowkey.ui.common.pagination.Page
+import com.rvv.android.test.taks.lowkey.ui.common.pagination.PageNumberPagingSource
+import com.rvv.android.test.taks.lowkey.ui.common.pagination.createPager
 import com.rvv.android.test.taks.lowkey.ui.details.PhotoDetails
 import com.rvv.android.test.taks.lowkey.ui.details.PhotoDetailsArgs
 
@@ -20,7 +20,7 @@ class ListOfPhotosViewModel(
             val data = contentRepository.getCurated(pageNumber, limit)
             Page(
                 items = data.photos.map { photo ->
-                    ListOfPhotosItem(photo.id, photo.photographer, findBestPhotoUrl(photo.src))
+                    ListOfPhotosItem(photo.id, photo.photographer, findBestPhotoUrl(photo.src), photo.src.original)
                 },
                 pageNumber = pageNumber,
                 hasNext = !data.nextPage.isNullOrBlank()
@@ -29,7 +29,7 @@ class ListOfPhotosViewModel(
     }.flow.cachedIn(viewModelScope)
 
     fun onItemClick(item: ListOfPhotosItem) {
-        val args = PhotoDetailsArgs(PhotoDetails(item.id, item.imageUrl, item.author))
+        val args = PhotoDetailsArgs(PhotoDetails(item.id, item.originalImageUrl))
         forward(ListOfPhotosFragmentDirections.actionListOfPhotosToPhotoDetails(args))
     }
 

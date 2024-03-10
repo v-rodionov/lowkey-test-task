@@ -5,13 +5,18 @@ import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.github.piasy.biv.loader.ImageLoader
 import com.rvv.android.test.taks.lowkey.core.Dependencies
 import com.rvv.android.test.taks.lowkey.databinding.FragmentPhotoDetailsBinding
 import com.rvv.android.test.taks.lowkey.ui.base.observeCommonEvents
+import com.rvv.android.test.taks.lowkey.utils.launchAndCollectIn
 import kotlinx.parcelize.Parcelize
+import java.io.File
 
 @Parcelize
 data class PhotoDetailsArgs(val photoDetails: PhotoDetails) : Parcelable
@@ -36,6 +41,37 @@ class PhotoDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
         super.onViewCreated(view, savedInstanceState)
+
+        toolbarPhotoDetails.setNavigationOnClickListener { findNavController().navigateUp() }
+
+        stateViewFlipperPhotoDetails.setOnRetryButtonClick {
+            val imageUrl = viewModel.imageUrl.value
+            imageViewPhotoDetails.showImage(imageUrl.toUri())
+        }
+
+        imageViewPhotoDetails.setImageLoaderCallback(object : ImageLoader.Callback {
+            override fun onCacheHit(imageType: Int, image: File?) = Unit
+            override fun onCacheMiss(imageType: Int, image: File?) = Unit
+            override fun onStart() = Unit
+            override fun onFinish() = Unit
+
+            override fun onProgress(progress: Int) {
+                stateViewFlipperPhotoDetails.setStateLoading()
+            }
+
+            override fun onSuccess(image: File?) {
+                stateViewFlipperPhotoDetails.setStateData()
+            }
+
+            override fun onFail(error: Exception?) {
+                stateViewFlipperPhotoDetails.setStateError()
+            }
+        })
+
+        viewModel.imageUrl.launchAndCollectIn(viewLifecycleOwner) { url ->
+            imageViewPhotoDetails.showImage(url.toUri())
+        }
+
         viewModel.observeCommonEvents(fragment = this@PhotoDetailsFragment)
     }
 

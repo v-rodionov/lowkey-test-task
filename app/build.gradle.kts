@@ -60,8 +60,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
     // Ui
-    implementation("com.squareup.picasso:picasso:2.8")
-    implementation ("jp.wasabeef:picasso-transformations:2.4.0")
-    implementation ("jp.co.cyberagent.android:gpuimage:2.1.0")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("com.github.piasy:BigImageViewer:1.8.1")
+    implementation("com.github.piasy:GlideImageLoader:1.8.1")
     implementation("com.google.android.material:material:1.11.0")
 }
