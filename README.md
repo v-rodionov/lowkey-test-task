@@ -10,12 +10,8 @@ Result debug apk: https://drive.google.com/file/d/1XqTCGm5zgKwgEwmiAU541DCkdtP2x
 
 
 ## Requirements:
-
 - Cell must contain: author's name, shadow and corner radius - ✅
 - Pagination - ✅
 - On cell selection show detail page with full image - ✅
-
-## Optional:
-
 - Add cache - Image caching ✅, responses cache is not supported ❌
 - Pull to refresh - ✅
